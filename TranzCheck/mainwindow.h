@@ -5,6 +5,7 @@
 #include <QColor>
 #include <QBrush>
 #include <QListWidgetItem>
+#include <QFileDialog>
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -36,7 +37,8 @@ private:
     Ui::MainWindow *ui;
     QJsonArray m_json_array;
 
-    bool readJson();
+    bool readJson(QString file_name);
     void encryptByteArray(const unsigned char* tranz, unsigned char cur_hash[65]);
+    void changeTranzs();
 };
 #endif // MAINWINDOW_H

@@ -7,7 +7,41 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->setWindowTitle("Транзакции");
-    readJson();
+    readJson("tranz.json");
+    changeTranzs();
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::on_openButton_clicked()
+{
+    readJson(QFileDialog::getOpenFileName());
+    this->ui->tranzListWidget->clear();
+    changeTranzs();
+}
+
+bool MainWindow::readJson(QString file_name)
+{
+    QFile jsonFile(file_name);
+    jsonFile.open(QFile::ReadOnly);
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonFile.readAll());
+    m_json_array = jsonDoc.object()["tranzs"].toArray();
+    qDebug() << m_json_array;
+    for (auto tranz: m_json_array) {
+        qDebug() << tranz.toObject()["sum"];
+        qDebug() << tranz.toObject()["num"];
+        qDebug() << tranz.toObject()["datetime"];
+        qDebug() << tranz.toObject()["prev_hash"];
+    }
+    jsonFile.close();
+    return true;
+}
+
+void MainWindow::changeTranzs()
+{
     this->ui->tranzListWidget->addItem(QString("Сумма") + "\t" + "Номер" + "\t" + "Дата" + "\t\t" + "Хэш предыдущего значения");
     QByteArray prev_hash = QString("1").toUtf8();
     if (prev_hash == QString("1").toUtf8()) {
@@ -39,31 +73,4 @@ MainWindow::MainWindow(QWidget *parent)
             QCryptographicHash::Sha256);
         cur_row += 1;
     }
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
-
-void MainWindow::on_openButton_clicked()
-{
-
-}
-
-bool MainWindow::readJson()
-{
-    QFile jsonFile("tranz.json");
-    jsonFile.open(QFile::ReadOnly);
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonFile.readAll());
-    m_json_array = jsonDoc.object()["tranzs"].toArray();
-    qDebug() << m_json_array;
-    for (auto tranz: m_json_array) {
-        qDebug() << tranz.toObject()["sum"];
-        qDebug() << tranz.toObject()["num"];
-        qDebug() << tranz.toObject()["datetime"];
-        qDebug() << tranz.toObject()["prev_hash"];
-    }
-    jsonFile.close();
-    return true;
 }
