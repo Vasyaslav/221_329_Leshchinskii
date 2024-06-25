@@ -16,13 +16,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_openButton_clicked()
-{
-    readJson(QFileDialog::getOpenFileName());
-    this->ui->tranzListWidget->clear();
-    changeTranzs();
-}
-
 bool MainWindow::readJson(QString file_name)
 {
     QFile jsonFile(file_name);
@@ -208,4 +201,11 @@ int MainWindow::encryptByteArray(
 void MainWindow::on_changeKeyButton_clicked()
 {
     pin = this->ui->newKEYEdit->text();
+}
+
+void MainWindow::on_openButton_clicked()
+{
+    readJson(QFileDialog::getOpenFileName());
+    this->ui->tranzListWidget->clear();
+    changeTranzs();
 }
