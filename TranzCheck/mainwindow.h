@@ -24,6 +24,7 @@ QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
+    // Класс для главного окна
     Q_OBJECT
 
 public:
