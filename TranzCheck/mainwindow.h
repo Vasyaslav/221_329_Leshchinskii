@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QColor>
+#include <QBrush>
+#include <QListWidgetItem>
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -9,6 +12,7 @@
 #include <QJsonValue>
 #include <QDebug>
 #include <openssl/evp.h>
+#include <openssl/sha.h>
 #include <QCryptographicHash>
 
 QT_BEGIN_NAMESPACE
@@ -32,6 +36,7 @@ private:
     Ui::MainWindow *ui;
     QJsonArray m_json_array;
 
-    bool ReadJson();
+    bool readJson();
+    void encryptByteArray(const unsigned char* tranz, unsigned char cur_hash[65]);
 };
 #endif // MAINWINDOW_H
