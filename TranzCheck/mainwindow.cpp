@@ -157,3 +157,25 @@ void MainWindow::on_openButton_clicked()
     this->ui->tranzListWidget->clear();
     changeTranzs();
 }
+
+void MainWindow::on_addButton_clicked()
+{
+    QString sum = this->ui->sumEdit->text();
+    QRegularExpression sum_reg("\\d\\d\\d\\d\\d\\d\\d");
+    QRegularExpressionMatch sum_match = sum_reg.match(sum);
+    QString num = this->ui->numEdit->text();
+    QRegularExpression num_reg("\\d\\d\\d\\d\\d\\d");
+    QRegularExpressionMatch num_match = num_reg.match(num);
+    QString datetime = this->ui->datetimeEdit->text();
+    QRegularExpression datetime_reg("\\d\\d\\d\\d\\.\\d\\d\\.\\d\\d_\\d\\d:\\d\\d:\\d\\d");
+    QRegularExpressionMatch datetime_match = datetime_reg.match(datetime);
+    qDebug() << sum_match.hasMatch();
+    qDebug() << num_match.hasMatch();
+    qDebug() << datetime_match.hasMatch();
+    if ((sum.length() == 7 && sum_match.hasMatch()) && (num.length() == 6 && num_match.hasMatch()) && (datetime.length() == 19 && datetime_match.hasMatch())) {
+        this->ui->saveButton->setEnabled(true);
+    } else {
+        this->ui->saveButton->setEnabled(false);
+    }
+}
+

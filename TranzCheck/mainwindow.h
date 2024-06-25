@@ -12,6 +12,8 @@
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QDebug>
+#include <QRegularExpression>
+#include <QRegularExpressionMatch>
 #include <openssl/evp.h>
 #include <openssl/sha.h>
 #include <QCryptographicHash>
@@ -35,6 +37,8 @@ private slots:
     void on_openButton_clicked();
 
     void on_changeKeyButton_clicked();
+
+    void on_addButton_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -26,6 +26,32 @@
      </widget>
     </item>
     <item>
+     <widget class="QPushButton" name="addButton">
+      <property name="text">
+       <string>Добавить</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="sumEdit"/>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="numEdit"/>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="datetimeEdit"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="saveButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>Сохранить</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QListWidget" name="tranzListWidget"/>
     </item>
     <item>
