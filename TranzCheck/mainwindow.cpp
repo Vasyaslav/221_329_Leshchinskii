@@ -27,7 +27,10 @@ bool MainWindow::readJson(QString file_name)
 {
     QFile jsonFile(file_name);
     jsonFile.open(QFile::ReadOnly);
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonFile.readAll());
+    QJsonParseError p_jsonErr;
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonFile.readAll(), &p_jsonErr);
+    if (p_jsonErr.error != QJsonParseError::NoError)
+        return false;
     m_json_array = jsonDoc.object()["tranzs"].toArray();
     qDebug() << m_json_array;
     for (auto tranz: m_json_array) {
