@@ -40,5 +40,6 @@ private:
     bool readJson(QString file_name);
     void encryptByteArray(const unsigned char* tranz, unsigned char cur_hash[65]);
     void changeTranzs();
+    int decryptByteArray(const QByteArray & aes256_key, const QByteArray &encryptedBytes,QByteArray &decryptedBytes);
 };
 #endif // MAINWINDOW_H
