@@ -16,6 +16,16 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
+     <widget class="QLineEdit" name="newKEYEdit"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="changeKeyButton">
+      <property name="text">
+       <string>Поменять ПИН-КОД</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QListWidget" name="tranzListWidget"/>
     </item>
     <item>
